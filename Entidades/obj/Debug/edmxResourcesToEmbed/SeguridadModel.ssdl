@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SeguridadModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="opcion">
+    <Key>
+      <PropertyRef Name="idopcion" />
+    </Key>
+    <Property Name="idopcion" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="url" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="rol">
+    <Key>
+      <PropertyRef Name="idrol" />
+    </Key>
+    <Property Name="idrol" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="estado" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="rol_opcion">
+    <Key>
+      <PropertyRef Name="idrol_opcion" />
+    </Key>
+    <Property Name="idrol_opcion" Type="int" Nullable="false" />
+    <Property Name="idrol" Type="int" Nullable="false" />
+    <Property Name="idopcion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="idusuario" />
+    </Key>
+    <Property Name="idusuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="25" />
+    <Property Name="apellido" Type="nvarchar" MaxLength="25" />
+    <Property Name="nombreusuario" Type="nvarchar" MaxLength="20" />
+    <Property Name="pwd" Type="nvarchar" MaxLength="20" />
+    <Property Name="fechaCreacion" Type="date" />
+    <Property Name="estado" Type="int" />
+  </EntityType>
+  <EntityType Name="usuario_rol">
+    <Key>
+      <PropertyRef Name="idusuario_rol" />
+    </Key>
+    <Property Name="idusuario_rol" Type="int" Nullable="false" />
+    <Property Name="idusuario" Type="int" Nullable="false" />
+    <Property Name="idrol" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_rol_opcion_opcion">
+    <End Role="opcion" Type="Self.opcion" Multiplicity="1" />
+    <End Role="rol_opcion" Type="Self.rol_opcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="opcion">
+        <PropertyRef Name="idopcion" />
+      </Principal>
+      <Dependent Role="rol_opcion">
+        <PropertyRef Name="idopcion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rol_opcion_rol">
+    <End Role="rol" Type="Self.rol" Multiplicity="1" />
+    <End Role="rol_opcion" Type="Self.rol_opcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rol">
+        <PropertyRef Name="idrol" />
+      </Principal>
+      <Dependent Role="rol_opcion">
+        <PropertyRef Name="idrol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usuario_rol_rol">
+    <End Role="rol" Type="Self.rol" Multiplicity="1" />
+    <End Role="usuario_rol" Type="Self.usuario_rol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rol">
+        <PropertyRef Name="idrol" />
+      </Principal>
+      <Dependent Role="usuario_rol">
+        <PropertyRef Name="idrol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usuario_rol_usuario">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+    <End Role="usuario_rol" Type="Self.usuario_rol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idusuario" />
+      </Principal>
+      <Dependent Role="usuario_rol">
+        <PropertyRef Name="idusuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SeguridadModelStoreContainer">
+    <EntitySet Name="opcion" EntityType="Self.opcion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rol" EntityType="Self.rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rol_opcion" EntityType="Self.rol_opcion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuario_rol" EntityType="Self.usuario_rol" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_rol_opcion_opcion" Association="Self.FK_rol_opcion_opcion">
+      <End Role="opcion" EntitySet="opcion" />
+      <End Role="rol_opcion" EntitySet="rol_opcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rol_opcion_rol" Association="Self.FK_rol_opcion_rol">
+      <End Role="rol" EntitySet="rol" />
+      <End Role="rol_opcion" EntitySet="rol_opcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usuario_rol_rol" Association="Self.FK_usuario_rol_rol">
+      <End Role="rol" EntitySet="rol" />
+      <End Role="usuario_rol" EntitySet="usuario_rol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usuario_rol_usuario" Association="Self.FK_usuario_rol_usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="usuario_rol" EntitySet="usuario_rol" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

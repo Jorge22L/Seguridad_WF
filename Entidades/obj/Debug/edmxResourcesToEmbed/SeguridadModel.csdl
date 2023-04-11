@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SeguridadModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="opcion">
+    <Key>
+      <PropertyRef Name="idopcion" />
+    </Key>
+    <Property Name="idopcion" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="rol_opcion" Relationship="Self.FK_rol_opcion_opcion" FromRole="opcion" ToRole="rol_opcion" />
+  </EntityType>
+  <EntityType Name="rol">
+    <Key>
+      <PropertyRef Name="idrol" />
+    </Key>
+    <Property Name="idrol" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="rol_opcion" Relationship="Self.FK_rol_opcion_rol" FromRole="rol" ToRole="rol_opcion" />
+    <NavigationProperty Name="usuario_rol" Relationship="Self.FK_usuario_rol_rol" FromRole="rol" ToRole="usuario_rol" />
+  </EntityType>
+  <EntityType Name="rol_opcion">
+    <Key>
+      <PropertyRef Name="idrol_opcion" />
+    </Key>
+    <Property Name="idrol_opcion" Type="Int32" Nullable="false" />
+    <Property Name="idrol" Type="Int32" Nullable="false" />
+    <Property Name="idopcion" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="opcion" Relationship="Self.FK_rol_opcion_opcion" FromRole="rol_opcion" ToRole="opcion" />
+    <NavigationProperty Name="rol" Relationship="Self.FK_rol_opcion_rol" FromRole="rol_opcion" ToRole="rol" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="idusuario" />
+    </Key>
+    <Property Name="idusuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="apellido" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="nombreusuario" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="pwd" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="fechaCreacion" Type="DateTime" Precision="0" />
+    <Property Name="estado" Type="Int32" />
+    <NavigationProperty Name="usuario_rol" Relationship="Self.FK_usuario_rol_usuario" FromRole="usuario" ToRole="usuario_rol" />
+  </EntityType>
+  <EntityType Name="usuario_rol">
+    <Key>
+      <PropertyRef Name="idusuario_rol" />
+    </Key>
+    <Property Name="idusuario_rol" Type="Int32" Nullable="false" />
+    <Property Name="idusuario" Type="Int32" Nullable="false" />
+    <Property Name="idrol" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="rol" Relationship="Self.FK_usuario_rol_rol" FromRole="usuario_rol" ToRole="rol" />
+    <NavigationProperty Name="usuario" Relationship="Self.FK_usuario_rol_usuario" FromRole="usuario_rol" ToRole="usuario" />
+  </EntityType>
+  <Association Name="FK_rol_opcion_opcion">
+    <End Role="opcion" Type="Self.opcion" Multiplicity="1" />
+    <End Role="rol_opcion" Type="Self.rol_opcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="opcion">
+        <PropertyRef Name="idopcion" />
+      </Principal>
+      <Dependent Role="rol_opcion">
+        <PropertyRef Name="idopcion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rol_opcion_rol">
+    <End Role="rol" Type="Self.rol" Multiplicity="1" />
+    <End Role="rol_opcion" Type="Self.rol_opcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rol">
+        <PropertyRef Name="idrol" />
+      </Principal>
+      <Dependent Role="rol_opcion">
+        <PropertyRef Name="idrol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usuario_rol_rol">
+    <End Role="rol" Type="Self.rol" Multiplicity="1" />
+    <End Role="usuario_rol" Type="Self.usuario_rol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rol">
+        <PropertyRef Name="idrol" />
+      </Principal>
+      <Dependent Role="usuario_rol">
+        <PropertyRef Name="idrol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usuario_rol_usuario">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+    <End Role="usuario_rol" Type="Self.usuario_rol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idusuario" />
+      </Principal>
+      <Dependent Role="usuario_rol">
+        <PropertyRef Name="idusuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SeguridadEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="opcion" EntityType="Self.opcion" />
+    <EntitySet Name="rol" EntityType="Self.rol" />
+    <EntitySet Name="rol_opcion" EntityType="Self.rol_opcion" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="usuario" EntityType="Self.usuario" />
+    <EntitySet Name="usuario_rol" EntityType="Self.usuario_rol" />
+    <AssociationSet Name="FK_rol_opcion_opcion" Association="Self.FK_rol_opcion_opcion">
+      <End Role="opcion" EntitySet="opcion" />
+      <End Role="rol_opcion" EntitySet="rol_opcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rol_opcion_rol" Association="Self.FK_rol_opcion_rol">
+      <End Role="rol" EntitySet="rol" />
+      <End Role="rol_opcion" EntitySet="rol_opcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usuario_rol_rol" Association="Self.FK_usuario_rol_rol">
+      <End Role="rol" EntitySet="rol" />
+      <End Role="usuario_rol" EntitySet="usuario_rol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usuario_rol_usuario" Association="Self.FK_usuario_rol_usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="usuario_rol" EntitySet="usuario_rol" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

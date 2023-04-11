@@ -1,0 +1,13 @@
+C:\Users\JORGE\source\repos\Seguridad\Negocio\bin\Debug\Negocio.dll
+C:\Users\JORGE\source\repos\Seguridad\Negocio\bin\Debug\Negocio.pdb
+C:\Users\JORGE\source\repos\Seguridad\Negocio\bin\Debug\Datos.dll
+C:\Users\JORGE\source\repos\Seguridad\Negocio\bin\Debug\Entidades.dll
+C:\Users\JORGE\source\repos\Seguridad\Negocio\bin\Debug\EntityFramework.dll
+C:\Users\JORGE\source\repos\Seguridad\Negocio\bin\Debug\Datos.pdb
+C:\Users\JORGE\source\repos\Seguridad\Negocio\bin\Debug\Entidades.pdb
+C:\Users\JORGE\source\repos\Seguridad\Negocio\bin\Debug\Entidades.dll.config
+C:\Users\JORGE\source\repos\Seguridad\Negocio\obj\Debug\Negocio.csprojAssemblyReference.cache
+C:\Users\JORGE\source\repos\Seguridad\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\JORGE\source\repos\Seguridad\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\JORGE\source\repos\Seguridad\Negocio\obj\Debug\Negocio.dll
+C:\Users\JORGE\source\repos\Seguridad\Negocio\obj\Debug\Negocio.pdb
