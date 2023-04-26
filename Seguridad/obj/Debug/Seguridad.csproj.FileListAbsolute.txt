@@ -32,6 +32,8 @@ C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\AspNet.ScriptManager.bootstr
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\AspNet.ScriptManager.jQuery.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Datos.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Entidades.dll
+C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\EntityFramework.dll
+C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\EntityFramework.SqlServer.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Microsoft.AspNet.FriendlyUrls.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
@@ -42,11 +44,12 @@ C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Negocio.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Newtonsoft.Json.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\System.Web.Optimization.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\WebGrease.dll
-C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\EntityFramework.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Datos.pdb
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Entidades.pdb
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Entidades.dll.config
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Negocio.pdb
+C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\EntityFramework.xml
+C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\EntityFramework.SqlServer.xml
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\System.Web.Optimization.xml
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Newtonsoft.Json.xml
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Antlr3.Runtime.pdb
@@ -59,6 +62,3 @@ C:\Users\JORGE\source\repos\Seguridad\Seguridad\obj\Debug\Seguridad.csproj.CoreC
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\obj\Debug\Seguridad.csproj.CopyComplete
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\obj\Debug\Seguridad.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\obj\Debug\Seguridad.pdb
-C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\EntityFramework.SqlServer.dll
-C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\EntityFramework.xml
-C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\EntityFramework.SqlServer.xml

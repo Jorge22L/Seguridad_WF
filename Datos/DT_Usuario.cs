@@ -15,5 +15,22 @@ namespace Datos
             IQueryable<usuario> query = db.usuario;
             return query;
         }
+
+        public void guardarUsuario(usuario modelo)
+        {
+            using(SeguridadEntities contexto = new SeguridadEntities())
+            {
+                contexto.usuario.Add(modelo);
+                contexto.SaveChanges();
+            }
+        }
+
+        public List<usuario> listarUsuario()
+        {
+            using (SeguridadEntities contexto = new SeguridadEntities())
+            {
+                return contexto.usuario.AsNoTracking().ToList();
+            }
+        }
     }
 }
