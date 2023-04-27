@@ -13,13 +13,22 @@ namespace Seguridad {
     public partial class Usuarios {
         
         /// <summary>
-        /// Control usuario_nombre.
+        /// Control txtId_usuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox usuario_nombre;
+        protected global::System.Web.UI.WebControls.TextBox txtId_usuario;
+        
+        /// <summary>
+        /// Control txtNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombre;
         
         /// <summary>
         /// Control usuario_apellido.
@@ -56,6 +65,15 @@ namespace Seguridad {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button guardarUsuario;
+        
+        /// <summary>
+        /// Control editarUsuarioButton.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button editarUsuarioButton;
         
         /// <summary>
         /// Control gvUsuario.

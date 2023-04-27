@@ -13,8 +13,9 @@
         </Columns>
     </asp:GridView>--%>
     <br />
+    <asp:TextBox ID="txtId_usuario" Visible="false" runat="server" />
     <asp:Label runat="server">Nombre: </asp:Label>
-    <asp:TextBox ID="usuario_nombre" runat="server" />
+    <asp:TextBox ID="txtNombre" runat="server" />
     <br />
     <asp:Label runat="server">Apellido</asp:Label>
     <asp:TextBox ID="usuario_apellido" runat="server" />
@@ -27,9 +28,18 @@
     <asp:TextBox ID="usuario_clave" runat="server" TextMode="Password" />
     <br />
     <asp:Button ID="guardarUsuario" runat="server" OnClick="guardarUsuario_Click" Text="Guardar Usuario"></asp:Button>
+    <asp:Button ID="editarUsuarioButton" runat="server" OnClick="editarUsuarioButton_Click" Text="Editar Usuario"></asp:Button>
     <br />
     <br />
-    <asp:GridView ID="gvUsuario" runat="server" AllowPaging="true" EnableSortingAndPagingCallbacks="false" xmlns:asp="#unknown">
+    <asp:GridView ID="gvUsuario" runat="server" OnRowDataBound="gvUsuario_RowDataBound">
+        <Columns>
+            <asp:TemplateField HeaderText="Acciones">
+                <ItemTemplate>
+                    <asp:Button runat="server" Text="Editar" ID="btnEditarUsuario" OnClick="btnEditarUsuario_Click" />
+                    <asp:Button runat="server" Text="Eliminar" ID="btnEliminarUsuario" OnClick="btnEliminarUsuario_Click" />
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
     </asp:GridView>
     <br />
 </asp:Content>

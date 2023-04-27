@@ -5,6 +5,7 @@ C:\Users\JORGE\source\repos\Seguridad\Entidades\bin\Debug\EntityFramework.dll
 C:\Users\JORGE\source\repos\Seguridad\Entidades\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\JORGE\source\repos\Seguridad\Entidades\bin\Debug\EntityFramework.xml
 C:\Users\JORGE\source\repos\Seguridad\Entidades\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\JORGE\source\repos\Seguridad\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache
 C:\Users\JORGE\source\repos\Seguridad\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 C:\Users\JORGE\source\repos\Seguridad\Entidades\obj\Debug\Entidades.csproj.CopyComplete
 C:\Users\JORGE\source\repos\Seguridad\Entidades\obj\Debug\Entidades.dll
