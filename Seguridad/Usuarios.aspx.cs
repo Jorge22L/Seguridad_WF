@@ -73,28 +73,59 @@ namespace Seguridad
             this.usuario_apellido.Text = apellido;
             this.usuario_name.Text = nombre_usuario;
             this.usuario_clave.Text = clave;
-        }
 
-        protected void btnEliminarUsuario_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void editarUsuarioButton_Click(object sender, EventArgs e)
-        {
-            DateTime fecha_creacion = DateTime.Today;
-            usuario modelo = new usuario()
+            usuario usuarioEdit = new usuario()
             {
                 idusuario = Int32.Parse(this.txtId_usuario.Text),
                 nombre = this.txtNombre.Text,
                 apellido = this.usuario_apellido.Text,
                 nombreusuario = this.usuario_name.Text,
                 pwd = this.usuario_clave.Text,
-                fechaCreacion = fecha_creacion,
                 estado = 2
             };
-            ngu.NG_EditarUsuario(modelo);
-            listarUsuarios();
+
+            Session["DatosUsuario"] = usuarioEdit;
+            Response.Redirect("~/UsuarioEdit.aspx");
+        }
+
+        protected void btnEliminarUsuario_Click(object sender, EventArgs e)
+        {
+            string id;
+            string nombre, apellido, nombre_usuario, clave;
+            Button btnConsultar = (Button)sender;
+            GridViewRow selectedRow = (GridViewRow)btnConsultar.NamingContainer;
+            id = selectedRow.Cells[1].Text;
+            nombre = selectedRow.Cells[2].Text;
+            apellido = selectedRow.Cells[3].Text;
+            nombre_usuario = selectedRow.Cells[4].Text;
+            clave = selectedRow.Cells[5].Text;
+            //Mandando datos a los campos
+            this.txtId_usuario.Text = id;
+            this.txtNombre.Text = nombre;
+            this.usuario_apellido.Text = apellido;
+            this.usuario_name.Text = nombre_usuario;
+            this.usuario_clave.Text = clave;
+
+            usuario usuarioEliminar = new usuario()
+            {
+                idusuario = Int32.Parse(this.txtId_usuario.Text),
+                nombre = this.txtNombre.Text,
+                apellido = this.usuario_apellido.Text,
+                nombreusuario = this.usuario_name.Text,
+                pwd = this.usuario_clave.Text,
+                estado = 3
+            };
+
+            Session["DatosUsuarioEliminar"] = usuarioEliminar;
+            Response.Redirect("~/EliminarUsuario.aspx");
+        }
+
+        protected void editarUsuarioButton_Click(object sender, EventArgs e)
+        {
+            DateTime fecha_creacion = DateTime.Today;
+            
+            //ngu.NG_EditarUsuario(modelo);
+            //listarUsuarios();
         }
 
         // El tipo devuelto puede ser modificado a IEnumerable, sin embargo, para ser compatible con

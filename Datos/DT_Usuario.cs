@@ -36,7 +36,14 @@ namespace Datos
                 {
                     try
                     {
-                        contexto.usuario.AddOrUpdate(modelo);
+                        consulta.nombre = modelo.nombre ?? consulta.nombre;
+                        consulta.apellido = modelo.apellido ?? consulta.apellido;
+                        consulta.nombreusuario = modelo.nombreusuario ?? consulta.nombreusuario;
+                        consulta.fechaCreacion = modelo.fechaCreacion ?? consulta.fechaCreacion;
+                        consulta.pwd = modelo.pwd ?? consulta.pwd;
+                        consulta.estado = modelo.estado ?? consulta.estado;
+
+                        contexto.usuario.AddOrUpdate(consulta);
                         contexto.SaveChanges();
                     }
                     catch (Exception e)
@@ -51,11 +58,42 @@ namespace Datos
             }
         }
 
+        public void EliminarUsuario(usuario modelo)
+        {
+            using (SeguridadEntities contexto = new SeguridadEntities())
+            {
+                var consulta = contexto.usuario.Find(modelo.idusuario);
+                if(consulta != null)
+                {
+                    try
+                    {
+                        consulta.nombre = modelo.nombre ?? consulta.nombre;
+                        consulta.apellido = modelo.apellido ?? consulta.apellido;
+                        consulta.nombreusuario = modelo.nombreusuario ?? consulta.nombreusuario;
+                        consulta.fechaCreacion = modelo.fechaCreacion ?? consulta.fechaCreacion;
+                        consulta.pwd = modelo.pwd ?? consulta.pwd;
+                        consulta.estado = modelo.estado ?? consulta.estado;
+                        contexto.usuario.AddOrUpdate(consulta);
+                        contexto.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+
+                        throw new Exception(message: "Error en capa de datos usuario: " + e.Message);
+                    }
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+
         public List<usuario> listarUsuario()
         {
             using (SeguridadEntities contexto = new SeguridadEntities())
             {
-                return contexto.usuario.AsNoTracking().ToList();
+                return contexto.usuario.Where(u=>u.estado != 3).ToList();
             }
         }
     }

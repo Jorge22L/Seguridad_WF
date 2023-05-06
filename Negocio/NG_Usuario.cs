@@ -42,5 +42,18 @@ namespace Negocio
                 throw new Exception(message: "Error en NG_Usuario - Editar : " + e.StackTrace);
             }
         }
+
+        public void NG_EliminarUsuario(usuario modelo)
+        {
+            try
+            {
+                dtu.EditarUsuario(modelo);
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(message: "Error en NG_Usuario - Eliminar : " + e.StackTrace);
+            }
+        }
     }
 }
