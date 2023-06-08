@@ -37,6 +37,7 @@
                 <ItemTemplate>
                     <asp:Button runat="server" Text="Editar" ID="btnEditarUsuario" OnClick="btnEditarUsuario_Click" />
                     <asp:Button runat="server" Text="Eliminar" ID="btnEliminarUsuario" OnClick="btnEliminarUsuario_Click" />
+                    <asp:Button runat="server" Text="Ver" ID="btnVerDetalleUsuario" OnClick="btnVerDetalle_Click" />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>

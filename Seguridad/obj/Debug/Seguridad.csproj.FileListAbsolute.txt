@@ -1,3 +1,7 @@
+C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\SqlServerTypes\x64\msvcr120.dll
+C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
+C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\SqlServerTypes\x86\msvcr120.dll
+C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\SqlServerTypes\x86\SqlServerSpatial140.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Seguridad.dll.config
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Seguridad.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Seguridad.pdb
@@ -37,8 +41,13 @@ C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\EntityFramework.SqlServer.dl
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Microsoft.AspNet.FriendlyUrls.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Microsoft.ReportViewer.DataVisualization.dll
+C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll
+C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Microsoft.ReportViewer.WebForms.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Microsoft.ScriptManager.MSAjax.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Microsoft.SqlServer.Types.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Negocio.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Newtonsoft.Json.dll
@@ -58,6 +67,8 @@ C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\Microsoft.CodeDom.Providers.
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\es\System.Web.Optimization.resources.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\obj\Debug\Seguridad.csprojAssemblyReference.cache
+C:\Users\JORGE\source\repos\Seguridad\Seguridad\obj\Debug\RdlCompile.cache
+C:\Users\JORGE\source\repos\Seguridad\Seguridad\obj\Debug\RdlCompile.compiled
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\obj\Debug\Seguridad.csproj.CoreCompileInputs.cache
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\obj\Debug\Seguridad.csproj.CopyComplete
 C:\Users\JORGE\source\repos\Seguridad\Seguridad\obj\Debug\Seguridad.dll

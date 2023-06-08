@@ -27,13 +27,14 @@ namespace Seguridad
         private void GuardarUsuario()
         {
             DateTime fecha_creacion = DateTime.Today;
+            
             usuario modelo = new usuario()
             {
-                nombre = txtNombre.Text,
-                apellido = usuario_apellido.Text,
-                nombreusuario = usuario_name.Text,
+                nombre = this.txtNombre.Text,
+                apellido = this.usuario_apellido.Text,
+                nombreusuario = this.usuario_name.Text,
                 fechaCreacion = fecha_creacion,
-                pwd = usuario_clave.Text,
+                pwd = this.usuario_clave.Text.Trim(),
                 estado = 1
             };
             ngu.GuardarUsuario(modelo);
@@ -126,6 +127,16 @@ namespace Seguridad
             
             //ngu.NG_EditarUsuario(modelo);
             //listarUsuarios();
+        }
+
+        protected void btnVerDetalle_Click(object sender, EventArgs e)
+        {
+            string id;
+            Button btnConsultar = (Button)sender;
+            GridViewRow selectedRow = (GridViewRow)btnConsultar.NamingContainer;
+            id = selectedRow.Cells[1].Text;
+            Session["idUsuario"] = id;
+            Response.Redirect("~/VerUsuario.aspx");
         }
 
         // El tipo devuelto puede ser modificado a IEnumerable, sin embargo, para ser compatible con

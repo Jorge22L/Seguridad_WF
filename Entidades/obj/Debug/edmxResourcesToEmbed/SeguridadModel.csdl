@@ -47,10 +47,11 @@
     <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
     <Property Name="apellido" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
     <Property Name="nombreusuario" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="pwd" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="pwd" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
     <Property Name="fechaCreacion" Type="DateTime" Precision="0" />
     <Property Name="estado" Type="Int32" />
     <NavigationProperty Name="usuario_rol" Relationship="Self.FK_usuario_rol_usuario" FromRole="usuario" ToRole="usuario_rol" />
+    <NavigationProperty Name="AES" Relationship="SeguridadModel.FK_AES_usuario" FromRole="usuario" ToRole="AES" />
   </EntityType>
   <EntityType Name="usuario_rol">
     <Key>
@@ -133,5 +134,32 @@
       <End Role="usuario" EntitySet="usuario" />
       <End Role="usuario_rol" EntitySet="usuario_rol" />
     </AssociationSet>
+    <EntitySet Name="AES" EntityType="SeguridadModel.AES" />
+    <AssociationSet Name="FK_AES_usuario" Association="SeguridadModel.FK_AES_usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="AES" EntitySet="AES" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="AES">
+    <Key>
+      <PropertyRef Name="idAes" />
+    </Key>
+    <Property Name="idAes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="token" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="iv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idUsuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="usuario" Relationship="SeguridadModel.FK_AES_usuario" FromRole="AES" ToRole="usuario" />
+  </EntityType>
+  <Association Name="FK_AES_usuario">
+    <End Type="SeguridadModel.usuario" Role="usuario" Multiplicity="1" />
+    <End Type="SeguridadModel.AES" Role="AES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idusuario" />
+      </Principal>
+      <Dependent Role="AES">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

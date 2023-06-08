@@ -61,5 +61,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AES">
+      <EntityTypeMapping TypeName="SeguridadModel.AES">
+        <MappingFragment StoreEntitySet="AES">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="iv" ColumnName="iv" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="idAes" ColumnName="idAes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

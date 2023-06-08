@@ -15,6 +15,8 @@
         <AssociationConnector Association="SeguridadModel.FK_rol_opcion_rol" ManuallyRouted="false" />
         <AssociationConnector Association="SeguridadModel.FK_usuario_rol_rol" ManuallyRouted="false" />
         <AssociationConnector Association="SeguridadModel.FK_usuario_rol_usuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SeguridadModel.AES" Width="1.5" PointX="4.5" PointY="7" />
+        <AssociationConnector Association="SeguridadModel.FK_AES_usuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

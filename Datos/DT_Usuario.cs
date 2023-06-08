@@ -2,7 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,21 +14,69 @@ namespace Datos
 {
     public class Dt_Usuario
     {
-        public IQueryable<usuario> getUsuario()
-        {
-            SeguridadEntities db = new SeguridadEntities();
-            IQueryable<usuario> query = db.usuario;
-            return query;
-        }
+        AES aes = new AES();
+        DT_Aes aesDt = new DT_Aes();
 
-        public void guardarUsuario(usuario modelo)
+        public usuario VerUsuario(int idusuario)
         {
-            using(SeguridadEntities contexto = new SeguridadEntities())
+            using (SeguridadEntities contexto = new SeguridadEntities())
             {
-                contexto.usuario.Add(modelo);
-                contexto.SaveChanges();
+                usuario consulta = contexto.usuario.Find(idusuario);
+                if(consulta != null)
+                {
+                    return consulta;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
+
+        public int guardarUsuario(usuario modelo)
+        {
+
+            using(SeguridadEntities contexto = new SeguridadEntities())
+            {
+                int idUsuarioGuardado = 0;
+                try
+                {
+                    contexto.usuario.Add(modelo);
+                    contexto.SaveChanges();
+                    idUsuarioGuardado = modelo.idusuario;
+                    Console.WriteLine($"idUsuarioGuardado: '{idUsuarioGuardado}'");
+                }
+                catch (DbEntityValidationException dbEx)
+                {
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            Trace.TraceInformation("Property: {0} Error: {1}",
+                                validationError.PropertyName,
+                                validationError.ErrorMessage);
+                        }
+                    }
+                }
+
+                return idUsuarioGuardado;
+
+            }
+        }
+
+        public bool InsertarAES(AES aes)
+        {
+            bool guardado = false;
+            using (SeguridadEntities modelo = new SeguridadEntities())
+            {
+                modelo.AES.Add(aes);
+                modelo.SaveChanges();
+                guardado = true;
+            }
+            
+            return guardado;
+        }
+
 
         public void EditarUsuario(usuario modelo)
         {
@@ -46,9 +98,18 @@ namespace Datos
                         contexto.usuario.AddOrUpdate(consulta);
                         contexto.SaveChanges();
                     }
-                    catch (Exception e)
+                    
+                    catch (DbEntityValidationException dbEx)
                     {
-                        throw new Exception(message: "Error en capa de datos usuario: " + e.Message);
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                Trace.TraceInformation("Property: {0} Error: {1}",
+                                    validationError.PropertyName,
+                                    validationError.ErrorMessage);
+                            }
+                        }
                     }
                 }
                 else
@@ -96,5 +157,35 @@ namespace Datos
                 return contexto.usuario.Where(u=>u.estado != 3).ToList();
             }
         }
+
+        public bool ValidarCredenciales(string usuario, string pwd, int rol)
+        {
+            bool entrar = false;
+            string pwdDecrypt = "";
+            int rolSelected = rol;
+            Debug.WriteLine("Rol seleccionado: " + rol);
+          
+
+            using (SeguridadEntities modelo = new SeguridadEntities())
+            {
+                usuario user = modelo.usuario.Where(u => u.nombreusuario.Equals(usuario)).FirstOrDefault();
+                AES aes = modelo.AES.Where(a => a.idUsuario == user.idusuario).FirstOrDefault();
+
+                pwdDecrypt = aesDt.Decrypt_Aes(user.pwd, aes.token, aes.iv);
+
+                if (usuario.Equals(user.nombreusuario) && pwd.Equals(pwdDecrypt))
+                {
+                    entrar = true;
+                }
+                else
+                {
+                    entrar = false;
+                }
+
+                return entrar;
+            }
+        }
     }
+
+    
 }

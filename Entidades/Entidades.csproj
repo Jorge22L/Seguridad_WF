@@ -53,6 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AES.cs">
+      <DependentUpon>SeguridadModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="opcion.cs">
       <DependentUpon>SeguridadModel.tt</DependentUpon>
     </Compile>

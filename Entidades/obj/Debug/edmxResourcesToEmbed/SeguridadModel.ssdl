@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SeguridadModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AES">
+    <Key>
+      <PropertyRef Name="idAes" />
+    </Key>
+    <Property Name="idAes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idUsuario" Type="int" Nullable="false" />
+    <Property Name="token" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="iv" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="opcion">
     <Key>
       <PropertyRef Name="idopcion" />
@@ -42,7 +51,7 @@
     <Property Name="nombre" Type="nvarchar" MaxLength="25" />
     <Property Name="apellido" Type="nvarchar" MaxLength="25" />
     <Property Name="nombreusuario" Type="nvarchar" MaxLength="20" />
-    <Property Name="pwd" Type="nvarchar" MaxLength="20" />
+    <Property Name="pwd" Type="nvarchar" MaxLength="25" />
     <Property Name="fechaCreacion" Type="date" />
     <Property Name="estado" Type="int" />
   </EntityType>
@@ -54,6 +63,18 @@
     <Property Name="idusuario" Type="int" Nullable="false" />
     <Property Name="idrol" Type="int" Nullable="false" />
   </EntityType>
+  <Association Name="FK_AES_usuario">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+    <End Role="AES" Type="Self.AES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idusuario" />
+      </Principal>
+      <Dependent Role="AES">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_rol_opcion_opcion">
     <End Role="opcion" Type="Self.opcion" Multiplicity="1" />
     <End Role="rol_opcion" Type="Self.rol_opcion" Multiplicity="*" />
@@ -103,12 +124,17 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="SeguridadModelStoreContainer">
+    <EntitySet Name="AES" EntityType="Self.AES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="opcion" EntityType="Self.opcion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="rol" EntityType="Self.rol" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="rol_opcion" EntityType="Self.rol_opcion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="usuario_rol" EntityType="Self.usuario_rol" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AES_usuario" Association="Self.FK_AES_usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="AES" EntitySet="AES" />
+    </AssociationSet>
     <AssociationSet Name="FK_rol_opcion_opcion" Association="Self.FK_rol_opcion_opcion">
       <End Role="opcion" EntitySet="opcion" />
       <End Role="rol_opcion" EntitySet="rol_opcion" />

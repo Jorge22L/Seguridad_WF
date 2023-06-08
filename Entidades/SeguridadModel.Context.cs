@@ -31,5 +31,6 @@ namespace Entidades
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
         public virtual DbSet<usuario_rol> usuario_rol { get; set; }
+        public virtual DbSet<AES> AES { get; set; }
     }
 }
